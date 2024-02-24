@@ -31,9 +31,9 @@ class LifeGameCells {
           const geometry = new THREE.BoxGeometry( this.boxWidth, this.boxWidth, this.boxWidth );
           
           const isAlive = RandomUtil.getRandomInt(2) === 1;
-          const opacity = isAlive ? 0.5 : 0.2;
+          const opacity = isAlive ? 0.6 : 0.2;
           
-          const material = new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: opacity, transparent: true, wireframe: !isAlive } );
+          const material = new THREE.MeshNormalMaterial( { color: 0x0000ff, opacity: opacity, transparent: true, wireframe: !isAlive } );
           const box = new THREE.Mesh( geometry, material );
 
           // box.castShadow = true;
@@ -58,7 +58,7 @@ class LifeGameCells {
       
       this.cells.flat(Infinity).forEach((cell) => {
         const isAlive = RandomUtil.getRandomInt(2) === 1;
-        const opacity = isAlive ? 0.5 : 0.2;
+        const opacity = isAlive ? 0.6 : 0.2;
   
         cell.opacity = opacity;
         cell.material.wireframe = isAlive;
@@ -78,7 +78,7 @@ export const ThreeSample = () => {
     const settings = {
       resetCamera: function() {
         controls.update();
-        camera.position.set(3, 3, 3);
+        camera.position.set(1, 1, 1);
       }
     }
 
@@ -87,10 +87,10 @@ export const ThreeSample = () => {
     gui.open();
 
     const camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
-    camera.position.set(3, 3, 3);
+    camera.position.set(1, 1, 1);
     camera.lookAt(0, 0, 0);
 
-    const lifegame = new LifeGameCells(camera, 9, 9, 9);
+    const lifegame = new LifeGameCells(camera, 5, 5, 5);
 
     const renderer = new THREE.WebGLRenderer( { antialias: true } );
     renderer.setSize( window.innerWidth, window.innerHeight );
